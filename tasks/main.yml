@@ -1,0 +1,19 @@
+---
+# tasks file for server.loadbalencer
+
+- apt: update_cache=yes cache_valid_time=3600
+
+- name: Install list of packages
+  apt: name={{item}} state=installed
+  with_items:
+       - haproxy
+
+- template: src=roles/server.loadbalencer/templates/etc/haproxy/{{item}} dest=/etc/haproxy/{{item}} 
+  with_items:
+       - haproxy.cfg
+  notify: restart haproxy
+
+- service:
+    name: haproxy
+    state: started
+    enabled: yes
