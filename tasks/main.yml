@@ -8,7 +8,7 @@
   with_items:
        - haproxy
 
-- template: src=roles/server.loadbalencer/templates/etc/haproxy/{{item}} dest=/etc/haproxy/{{item}} 
+- template: src=etc/haproxy/{{item}} dest=/etc/haproxy/{{item}} 
   with_items:
        - haproxy.cfg
   notify: restart haproxy

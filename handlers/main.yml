@@ -1,5 +1,5 @@
 ---
 # handlers file for server.loadbalencer
 
-    - name: refresh haproxy
-      service: name=haproxy state=reloaded
+    - name: restart haproxy
+      service: name=haproxy state=restart
